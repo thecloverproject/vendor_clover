@@ -225,7 +225,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PACKAGES += \
     GameSpace \
     Launcher3QuickStep \
-    ThemePicker
+    ThemePicker \
+    ThemesStub
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -312,7 +313,14 @@ CUSTOM_LOCALES += \
     fur_IT
 
 # Google apps and services
-$(call inherit-product, vendor/gms/products/gms.mk)
+$(call inherit-product, vendor/pixel/clocks/products/clocks.mk)
+$(call inherit-product, vendor/pixel/gms/products/gms.mk)
+$(call inherit-product, vendor/pixel/sounds/products/sounds.mk)
+
+ifeq ($(TARGET_INCLUDE_PIXEL_LAUNCHER),true)
+$(call inherit-product, vendor/pixel/launcher/products/launcher.mk)
+$(call inherit-product, vendor/pixel/themepicker/products/themepicker.mk)
+endif
 
 include vendor/clover/config/version.mk
 
